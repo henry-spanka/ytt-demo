@@ -1,0 +1,7 @@
+#@data/values-schema
+---
+argocd:
+  apps:
+    - name: "" #@schema/validation min_len=1
+      #@schema/validation min_len=1
+      revision: master

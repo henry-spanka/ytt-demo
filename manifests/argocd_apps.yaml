@@ -1,0 +1,22 @@
+#@ load("@ytt:data", "data")
+#@ for app in data.values.argocd.apps:
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: #@ app.name
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://myrepo
+    path: #@ app.name
+    targetRevision: #@ app.revision
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: #@ app.name
+  syncPolicy:
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
+#@ end

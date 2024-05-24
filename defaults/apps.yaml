@@ -1,0 +1,8 @@
+#@data/values
+---
+argocd:
+  #! default apps
+  apps:
+    - name: cert-manager
+    - name: coredns
+    - name: external-dns
